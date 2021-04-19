@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes.js";
 import tenantRoutes from "./routes/tenantRoutes.js";
 import roomsRoutes from "./routes/roomsRoute.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
+import landlordRoutes from "./routes/landlordRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleWare.js";
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/tenants", tenantRoutes);
 app.use("/api/property", propertyRoutes);
 app.use("/api/rooms", roomsRoutes);
+app.use("/api/landlords", landlordRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

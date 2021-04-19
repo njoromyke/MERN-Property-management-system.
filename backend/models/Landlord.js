@@ -20,11 +20,6 @@ const landLordSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
-    agreementDoc: {
-      required: true,
-      type: String,
-      default: null,
-    },
   },
   {
     timestamps: true,

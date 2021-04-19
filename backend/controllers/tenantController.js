@@ -13,7 +13,6 @@ const registerTenant = AsyncHandler(async (req, res) => {
     email,
     phoneNumber,
     idNumber,
-    agreementDoc,
     emergencyPhoneNumber,
     emergencyName,
     occupation,
@@ -31,7 +30,6 @@ const registerTenant = AsyncHandler(async (req, res) => {
       email,
       phoneNumber,
       idNumber,
-      agreementDoc,
       emergencyPhoneNumber,
       emergencyName,
       roomAssigned,
@@ -52,7 +50,6 @@ const updateTenant = AsyncHandler(async (req, res) => {
     tenant.email = req.body.email || tenant.email;
     tenant.phoneNumber = req.body.phoneNumber || tenant.phoneNumber;
     tenant.idNumber = req.body.idNumber || tenant.idNumber;
-    tenant.agreementDoc = req.body.agreementDoc || tenant.agreementDoc;
     tenant.emergencyName = req.body.emergencyName || tenant.emergencyName;
     tenant.roomAssigned = req.body.roomAssigned || tenant.roomAssigned;
     const updatedTenant = await tenant.save();
@@ -64,7 +61,6 @@ const updateTenant = AsyncHandler(async (req, res) => {
       email: updatedTenant.email,
       phoneNumber: updatedTenant.phoneNumber,
       idNumber: updatedTenant.idNumber,
-      agreementDoc: updatedTenant.agreementDoc,
       emergencyPhoneNumber: updatedTenant.emergencyPhoneNumber,
       emergencyName: updatedTenant.emergencyName,
       roomAssigned: updatedTenant.roomAssigned,

@@ -23,10 +23,6 @@ const tenantSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    agreementDoc: {
-      required: true,
-      type: String,
-    },
     occupation: {
       type: String,
       required: true,

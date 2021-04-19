@@ -38,6 +38,8 @@ const roomSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Tenant",
+      default: {},
+      mininmize: false,
     },
   },
   {
