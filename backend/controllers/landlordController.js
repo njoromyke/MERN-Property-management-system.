@@ -44,7 +44,7 @@ const getLandlords = AsyncHandler(async (req, res) => {
 const getLandlordById = AsyncHandler(async (req, res) => {
   const landlord = await LandLord.findById(req.params.id);
   if (!landlord) {
-    res.status(401).json("No tenant found");
+    res.status(401).json("No Landlord found");
   } else {
     res.json(landlord);
   }
@@ -58,9 +58,9 @@ const deleteLandlord = AsyncHandler(async (req, res) => {
   const landlord = await LandLord.findById(req.params.id);
   if (landlord) {
     await landlord.remove();
-    res.json({ msg: "Landlord removed" });
+    return res.json({ msg: "Landlord removed" });
   } else {
-    res.status(401).json("No landlord found");
+    return res.status(401).json("No landlord found");
   }
 });
 
