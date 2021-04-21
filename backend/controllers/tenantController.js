@@ -79,13 +79,18 @@ const getTenants = AsyncHandler(async (req, res) => {
   res.json(tenants);
 });
 
-// //@desc get all tenants
-// //@method POST /api/tenant
+// //@desc getTenantby id
+// //@method POST /api/tenant/:id
 // //protection private
-// const getTenants = AsyncHandler(async (req, res) => {
-//   const tenants = await Tenant.find({});
-//   res.json(tenants);
-// });
+
+const getTenantById = AsyncHandler(async (req, res) => {
+  const tenant = await Tenant.findById(req.params.id);
+  if (tenant) {
+    return res.json(tenant);
+  } else {
+    throw new Error("No tenant found");
+  }
+});
 
 //@desc delete tenant
 //@method dlete /api/tenant/:id
@@ -101,4 +106,10 @@ const deleteTenant = AsyncHandler(async (req, res) => {
   }
 });
 
-export { registerTenant, updateTenant, getTenants, deleteTenant };
+export {
+  registerTenant,
+  updateTenant,
+  getTenants,
+  deleteTenant,
+  getTenantById,
+};

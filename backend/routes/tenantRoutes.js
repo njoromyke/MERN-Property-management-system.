@@ -4,11 +4,16 @@ import {
   getTenants,
   registerTenant,
   updateTenant,
-  deleteTenant
+  deleteTenant,
+  getTenantById,
 } from "../controllers/tenantController.js";
 const router = express.Router();
 
 router.route("/").post(protect, registerTenant).get(protect, getTenants);
-router.route("/:id").put(protect, updateTenant).delete(protect,deleteTenant);
+router
+  .route("/:id")
+  .get(protect, getTenantById)
+  .put(protect, updateTenant)
+  .delete(protect, deleteTenant);
 
 export default router;
