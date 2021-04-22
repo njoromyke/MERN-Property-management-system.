@@ -20,6 +20,10 @@ const landLordSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    ref: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: true,

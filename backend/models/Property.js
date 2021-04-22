@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const propertySchema = mongoose.Schema(
   {
-    name: {
+    givenName: {
       type: String,
       required: true,
     },
@@ -15,6 +15,7 @@ const propertySchema = mongoose.Schema(
     deposit: {
       type: Number,
       required: true,
+      default: 0,
     },
     type: {
       required: true,
@@ -23,6 +24,7 @@ const propertySchema = mongoose.Schema(
     rent: {
       required: true,
       type: Number,
+      default: 0,
     },
     county: {
       type: String,
@@ -37,14 +39,11 @@ const propertySchema = mongoose.Schema(
       required: true,
       default: false,
     },
-    tenant: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "Tenant",
-    },
+
     numRooms: {
       type: Number,
       required: true,
+      default: 0,
     },
   },
   {

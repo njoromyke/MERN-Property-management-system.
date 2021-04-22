@@ -7,29 +7,26 @@ import Property from "../models/Property.js";
 //protection private
 const registerProperty = AsyncHandler(async (req, res) => {
   const {
-    name,
+    givenName,
     landlord,
     deposit,
-    description,
     type,
     rent,
-    location,
     city,
     county,
     isOccupied,
     tenant,
     numRooms,
   } = req.body;
-  const existProperty = await Property.findOne({ name });
+  const existProperty = await Property.findOne({ givenName });
   if (existProperty) {
     res.status(400);
     throw new Error("Property with the name already exists");
   } else {
     const property = await Property.create({
-      name,
+      givenName,
       landlord,
       deposit,
-      description,
       type,
       rent,
       city,
@@ -83,24 +80,23 @@ const deleteProperty = AsyncHandler(async (req, res) => {
 const updateProperty = AsyncHandler(async (req, res) => {
   const property = await Property.findById(req.params.id);
   if (property) {
-    propery.name = req.body.name || property.name;
+    propery.givenName = req.body.givenName || property.givenName;
     propery.landlord = req.body.landlord || property.landlord;
     propery.desposit = req.body.desposit || property.desposit;
-    propery.description = req.body.description || property.description;
     propery.type = req.body.type || property.type;
     propery.rent = req.body.rent || property.rent;
     propery.city = req.body.city || property.city;
     propery.county = req.body.county || property.county;
-    propery.isOccupied = req.body.name || property.name;
+    propery.isOccupied = req.body.isOccupied || property.isOccupied;
     propery.numRooms = req.body.numRooms || property.numRooms;
     propery.tenant = req.body.tenant || property.tenant;
 
     const updatedProperty = property.save();
     res.json({
       _id: updatedProperty._id,
+      givenName:updatedProperty.givenName,
       landlord: updatedProperty.landlord,
       deposit: updatedProperty.deposit,
-      description: updatedProperty.description,
       type: updatedProperty.type,
       rent: updatedProperty.rent,
       city: updatedProperty.city,
@@ -115,4 +111,10 @@ const updateProperty = AsyncHandler(async (req, res) => {
   }
 });
 
-export { registerProperty, deleteProperty, getProperty, getPropertyById,updateProperty };
+export {
+  registerProperty,
+  deleteProperty,
+  getProperty,
+  getPropertyById,
+  updateProperty,
+};

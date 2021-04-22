@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const tenantSchema = mongoose.Schema(
   {
+    ref:{
+      type:String,
+      default:null,
+    },
     firstName: {
       type: String,
       required: true,
