@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const tenantSchema = mongoose.Schema(
   {
-    ref:{
-      type:String,
-      default:null,
+    ref: {
+      type: String,
+      default: "",
     },
     firstName: {
       type: String,

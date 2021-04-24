@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const landLordSchema = mongoose.Schema(
   {
+    ref: {
+      type: String,
+      default: "",
+    },
     fullName: {
       type: String,
       required: true,
@@ -19,10 +23,6 @@ const landLordSchema = mongoose.Schema(
       type: Number,
       required: true,
       unique: true,
-    },
-    ref: {
-      type: String,
-      default: null,
     },
   },
   {

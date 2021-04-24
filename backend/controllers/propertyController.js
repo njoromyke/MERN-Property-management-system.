@@ -43,7 +43,9 @@ const registerProperty = AsyncHandler(async (req, res) => {
 //@method POST /api/property/
 //protection private
 const getProperty = AsyncHandler(async (req, res) => {
-  const property = await Property.find({});
+  const property = await Property.find({})
+    .populate("tenant","firstName lastName")
+    .populate("landlord","fullName");
   res.json(property);
 });
 
@@ -94,7 +96,7 @@ const updateProperty = AsyncHandler(async (req, res) => {
     const updatedProperty = property.save();
     res.json({
       _id: updatedProperty._id,
-      givenName:updatedProperty.givenName,
+      givenName: updatedProperty.givenName,
       landlord: updatedProperty.landlord,
       deposit: updatedProperty.deposit,
       type: updatedProperty.type,

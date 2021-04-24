@@ -7,9 +7,14 @@ const propertySchema = mongoose.Schema(
       required: true,
     },
     landlord: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       required: true,
-      ref: "Landlord",
+      ref: "LandLord",
+    },
+    tenant: {
+      type: String,
+      required: true,
+      ref: "Tenant",
     },
 
     deposit: {
