@@ -1,5 +1,4 @@
 
-                                    ##########################################
                                         Manyatta(proposed)
                                         is a property manangement system focused on
                                          assisting caretakers and
@@ -12,14 +11,6 @@
                                         chat,
                                         alerts,
                                         messaging
-
-
                                         Author: myke software
                                         NB:THIS IS NOT AN OPEN SOURCE PROGRAM...
-
-
-
-
-
-                                        ##################################
 
