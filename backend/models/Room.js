@@ -6,13 +6,11 @@ const roomSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
+
     rent: {
       type: Number,
       required: true,
+      default: 0,
     },
 
     isOccupied: {
@@ -24,22 +22,27 @@ const roomSchema = mongoose.Schema(
       required: true,
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",
+      unique: false,
     },
     deposit: {
       type: Number,
       required: true,
+      default: 0,
     },
     startDate: {
       type: Date,
       required: true,
-      default: Date.now(),
+      default: () => Date.now(),
     },
     tenant: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Tenant",
-      default: {},
-      mininmize: false,
+      sparse: true,
+    },
+    type: {
+      type: String,
+      required: true,
     },
   },
   {

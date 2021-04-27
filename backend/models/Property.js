@@ -5,6 +5,7 @@ const propertySchema = mongoose.Schema(
     givenName: {
       type: String,
       required: true,
+      lowercase: true,
     },
     landlord: {
       type: String,
@@ -49,6 +50,9 @@ const propertySchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    ref: {
+      type: [String],
     },
   },
   {

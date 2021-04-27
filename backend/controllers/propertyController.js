@@ -82,16 +82,16 @@ const deleteProperty = AsyncHandler(async (req, res) => {
 const updateProperty = AsyncHandler(async (req, res) => {
   const property = await Property.findById(req.params.id);
   if (property) {
-    propery.givenName = req.body.givenName || property.givenName;
-    propery.landlord = req.body.landlord || property.landlord;
-    propery.desposit = req.body.desposit || property.desposit;
-    propery.type = req.body.type || property.type;
-    propery.rent = req.body.rent || property.rent;
-    propery.city = req.body.city || property.city;
-    propery.county = req.body.county || property.county;
-    propery.isOccupied = req.body.isOccupied || property.isOccupied;
-    propery.numRooms = req.body.numRooms || property.numRooms;
-    propery.tenant = req.body.tenant || property.tenant;
+    property.givenName = req.body.givenName || property.givenName;
+    property.landlord = req.body.landlord || property.landlord;
+    property.desposit = req.body.desposit || property.desposit;
+    property.type = req.body.type || property.type;
+    property.rent = req.body.rent || property.rent;
+    property.city = req.body.city || property.city;
+    property.county = req.body.county || property.county;
+    property.isOccupied = req.body.isOccupied || property.isOccupied;
+    property.numRooms = req.body.numRooms || property.numRooms;
+    property.tenant = req.body.tenant || property.tenant;
 
     const updatedProperty = property.save();
     res.json({

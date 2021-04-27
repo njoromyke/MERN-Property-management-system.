@@ -11,6 +11,6 @@ import {
 const router = express.Router();
 
 router.route("/").get(protect, getRooms).post(protect, addRoom);
-router.route("/:id").put(protect, updateRoom).delete(protect, deleteRoom);
+router.route("/:id").put(protect, updateRoom).delete(protect, deleteRoom).get(protect,getRoomBId);
 
 export default router;
