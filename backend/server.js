@@ -9,7 +9,7 @@ import roomsRoutes from "./routes/roomsRoute.js";
 import propertyRoutes from "./routes/propertyRoutes.js";
 import landlordRoutes from "./routes/landlordRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleWare.js";
-
+import rentRoutes from "./routes/rentRoutes.js";
 const app = express();
 dotenv.config();
 connectDB();
@@ -25,6 +25,7 @@ app.use("/api/tenants", tenantRoutes);
 app.use("/api/property", propertyRoutes);
 app.use("/api/rooms", roomsRoutes);
 app.use("/api/landlords", landlordRoutes);
+app.use("/api/rents", rentRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

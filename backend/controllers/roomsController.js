@@ -1,5 +1,6 @@
 import AsyncHandler from "express-async-handler";
 import Room from "../models/Room.js";
+import Property from "../models/Property.js";
 
 //@desc add room
 //@route POST /api/rooms
@@ -16,7 +17,7 @@ const addRoom = AsyncHandler(async (req, res) => {
     type,
   } = req.body;
   const roomExist = await Room.findOne({ title });
- 
+
   if (roomExist) {
     res.status(404);
     throw new Error("Room already exists");
@@ -41,7 +42,7 @@ const addRoom = AsyncHandler(async (req, res) => {
 
 const getRooms = AsyncHandler(async (req, res) => {
   const rooms = await Room.find({})
-    .populate("parentApartment", "givenName")
+    .populate("parentApartment", "givenName type")
     .populate("tenant", "firstName lastName");
   res.json(rooms);
 });
@@ -56,6 +57,21 @@ const getRoomBId = AsyncHandler(async (req, res) => {
     res.json(room);
   } else {
     res.status(500);
+    throw new Error("No room found");
+  }
+});
+//@desc getrooms by apartment id
+//@route GET /api/rooms/parentApartment/:id
+//@access private
+const getRoomsbyApartment = AsyncHandler(async (req, res) => {
+  const apartment = await Property.findById(req.params.id);
+  const roomInApartment = await Room.find({})
+    .where("parentApartment")
+    .equals(apartment);
+
+  if (roomInApartment) {
+    return res.json(roomInApartment);
+  } else {
     throw new Error("No room found");
   }
 });
@@ -105,4 +121,11 @@ const deleteRoom = AsyncHandler(async (req, res) => {
     throw new Error("No room found");
   }
 });
-export { deleteRoom, updateRoom, getRoomBId, getRooms, addRoom };
+export {
+  deleteRoom,
+  updateRoom,
+  getRoomBId,
+  getRooms,
+  addRoom,
+  getRoomsbyApartment,
+};
