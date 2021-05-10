@@ -1,6 +1,7 @@
 import AsyncHandler from "express-async-handler";
 import User from "../models/User.js";
 import Tenant from "../models/Tenant.js";
+import Room from "../models/Room.js";
 
 //@desc register tenant
 //@method POST /api/tenant/register
@@ -91,6 +92,7 @@ const getTenantById = AsyncHandler(async (req, res) => {
     throw new Error("No tenant found");
   }
 });
+
 
 //@desc delete tenant
 //@method dlete /api/tenant/:id

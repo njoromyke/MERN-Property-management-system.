@@ -1,28 +1,42 @@
 import AsyncHandler from "express-async-handler";
-import Rent from "../models/Room.js";
+import Rent from "../models/Rent.js";
+import Tenant from "../models/Tenant.js";
 
 //@desc add rent
 //@route POST /api/rents
 //@access private
 const addRent = AsyncHandler(async (req, res) => {
   const { apartment, amount, year, month, tenant, room, isPaid } = req.body;
-  const rent = await Rent.create({
-    apartment,
-    amount,
-    year,
-    month,
-    tenant,
-    room,
-    isPaid,
-  });
-  res.json(rooms);
+
+  const monthExists = await Rent.find({ month });
+  const yearExists = await Rent.find({ year });
+  const tenantExists = await Rent.find({ tenant });
+
+  if (month === monthExists && year === yearExists && tenant === tenantExists) {
+    throw new Error("Tenant already exists for selected month.");
+  } else {
+    const rent = await Rent.create({
+      apartment,
+      amount,
+      year,
+      month,
+      tenant,
+      room,
+      isPaid,
+    });
+    res.json(rent);
+  }
 });
 
 //@desc get all rents
 //@route GET /api/rents
 //@access private
 const getRents = AsyncHandler(async (req, res) => {
-  const rents = await Rent.find({}).populate("aprtment").populate("tenant").populate("room");
+  const rents = await Rent.find({})
+    .sort({ room: "desc", month: -1 })
+    .populate("apartment")
+    .populate("tenant")
+    .populate("room");
   res.json(rents);
 });
 

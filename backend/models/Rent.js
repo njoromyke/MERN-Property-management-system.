@@ -9,12 +9,12 @@ const rentSchema = mongoose.Schema(
     month: {
       type: Date,
       required: true,
-      default: Date.now(new Date.getMonth()),
+      default: Date.now(),
     },
     year: {
       type: Date,
       required: true,
-      default: Date.now(new Date.getFullYear()),
+      default: Date.now(),
     },
     isPaid: {
       type: Boolean,
@@ -35,6 +35,9 @@ const rentSchema = mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
+    },
+    ref: {
+      type: [String],
     },
   },
   {

@@ -38,7 +38,6 @@ const roomSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Tenant",
-      sparse: true,
     },
     type: {
       type: String,

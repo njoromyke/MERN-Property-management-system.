@@ -75,6 +75,21 @@ const getRoomsbyApartment = AsyncHandler(async (req, res) => {
     throw new Error("No room found");
   }
 });
+// //@desc getTenantbyRoomId
+// //@method get /api/rooms/getRoom/:id
+// //protection private
+const getTenantbyRoomId = AsyncHandler(async (req, res) => {
+  const room = await Room.findById(req.params.id);
+  const rooms = await Room.find({})
+    .where("_id")
+    .equals(room)
+    .populate("tenant", "firstName lastName");
+  if (rooms) {
+    return res.json(rooms);
+  } else {
+    throw new Error("No tenant found");
+  }
+});
 
 //@desc updateroom
 //@route GET /api/rooms/:id
@@ -128,4 +143,5 @@ export {
   getRooms,
   addRoom,
   getRoomsbyApartment,
+  getTenantbyRoomId,
 };

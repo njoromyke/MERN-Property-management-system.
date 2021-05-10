@@ -7,6 +7,7 @@ import {
   getRooms,
   updateRoom,
   getRoomsbyApartment,
+  getTenantbyRoomId,
 } from "../controllers/roomsController.js";
 
 const router = express.Router();
@@ -18,4 +19,5 @@ router
   .delete(protect, deleteRoom)
   .get(protect, getRoomBId);
 router.route("/parentApartment/:id").get(protect, getRoomsbyApartment);
+router.route("/getRoom/:id").get(protect, getTenantbyRoomId);
 export default router;
