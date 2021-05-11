@@ -93,7 +93,7 @@ const updateProperty = AsyncHandler(async (req, res) => {
     property.numRooms = req.body.numRooms || property.numRooms;
     property.tenant = req.body.tenant || property.tenant;
 
-    const updatedProperty = property.save();
+    const updatedProperty =await property.save();
     res.json({
       _id: updatedProperty._id,
       givenName: updatedProperty.givenName,

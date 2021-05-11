@@ -106,7 +106,7 @@ const updateRoom = AsyncHandler(async (req, res) => {
     room.deposit = req.body.deposit || room.deposit;
     room.startDate = req.body.startDate || room.startDate;
     room.type = req.body.type || room.type;
-    const updatedRoom = room.save();
+    const updatedRoom = await room.save();
     res.json({
       _id: updatedRoom._id,
       title: updatedRoom.title,
@@ -132,9 +132,10 @@ const deleteRoom = AsyncHandler(async (req, res) => {
   if (room) {
     await room.remove();
   } else {
-    res.status(500);
-    throw new Error("No room found");
+    res.status(404);
+    throw new Error("Property not found");
   }
+  res.json(room);
 });
 export {
   deleteRoom,
