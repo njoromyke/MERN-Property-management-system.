@@ -15,9 +15,6 @@ app.use(express.json());
 dotenv.config();
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("Hello myke");
-});
 
 app.use("/api/users", userRoutes);
 app.use("/api/tenants", tenantRoutes);
@@ -32,6 +29,11 @@ if ((process.env.NODE_ENV = "production")) {
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
+}else{
+  app.get("/", (req, res) => {
+    res.send("Hello myke");
+  });
+  
 }
 app.use(notFound);
 app.use(errorHandler);
