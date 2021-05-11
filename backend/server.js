@@ -29,11 +29,6 @@ if ((process.env.NODE_ENV = "production")) {
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
-}else{
-  app.get("/", (req, res) => {
-    res.send("Hello myke");
-  });
-  
 }
 app.use(notFound);
 app.use(errorHandler);
