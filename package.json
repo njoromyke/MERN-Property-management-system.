@@ -10,8 +10,9 @@
     "server": "supervisor backend/server",
     "client": "npm start --prefix frontend",
     "dev": "npm-run-all --parallel  client server",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "NPM_CONFIG_PRODUCTION":"false npm install --prefix frontend && npm run build --prefix frontend" 
 
+    
     
 
   },
