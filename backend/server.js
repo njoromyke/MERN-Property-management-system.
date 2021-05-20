@@ -1,7 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import config from "config";
-import colors from "colors";
 import path from "path";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -29,6 +27,10 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
+} else {
+  app.get("/", (req, res) => {
+    res.send("hello");
+  });
 }
 app.use(notFound);
 app.use(errorHandler);
@@ -36,7 +38,5 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(
-    `Server running on port ${PORT} on ${process.env.NODE_ENV} mode`.yellow.bold
-  );
+  console.log(`Server running on port ${PORT} on ${process.env.NODE_ENV} mode`);
 });
