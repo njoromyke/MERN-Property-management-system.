@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": " react-scripts build",
     "start": "node backend/server",
     "server": "supervisor backend/server",
     "client": "npm start --prefix frontend",
